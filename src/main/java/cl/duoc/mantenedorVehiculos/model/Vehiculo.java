@@ -29,10 +29,10 @@ public class Vehiculo {
     @Column(nullable = false)
     String modelo;
 
-    @Column
+    @Column(nullable = false)
     Integer annioFabricacion;
 
-    @Column
+    @Column(nullable = false)
     String color;
 
 }
