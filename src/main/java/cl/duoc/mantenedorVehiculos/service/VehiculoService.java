@@ -3,6 +3,8 @@ package cl.duoc.mantenedorVehiculos.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import cl.duoc.mantenedorVehiculos.dto.VehiculoDTO;
 import cl.duoc.mantenedorVehiculos.repository.VehiculoRepository;
 import lombok.*;
 
