@@ -35,4 +35,7 @@ public class Vehiculo {
     @Column(nullable = false)
     String color;
 
+    @Column(nullable = false)
+    Long stock;
+
 }

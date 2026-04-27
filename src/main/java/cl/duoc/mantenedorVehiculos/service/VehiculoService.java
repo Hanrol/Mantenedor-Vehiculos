@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import cl.duoc.mantenedorVehiculos.dto.VehiculoDTO;
 import cl.duoc.mantenedorVehiculos.repository.VehiculoRepository;
-import lombok.*;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +22,8 @@ public class VehiculoService {
                 vehiculo.getMarca(),
                 vehiculo.getModelo(),
                 vehiculo.getAnnioFabricacion(),
-                vehiculo.getColor()
+                vehiculo.getColor(),
+                vehiculo.getStock()
             ))
             .toList();
     }

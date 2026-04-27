@@ -30,4 +30,8 @@ public class VehiculoDTO {
     @NotBlank(message = "El color no puede estar vacío")
     @Size(min = 3, message = "El color debe tener al menos 4 caracteres")
     String color;
+
+    @NotNull(message = "El stock no puede ser nulo")
+    @Min(value = 0, message = "El stock debe ser mayor o igual a 0")
+    Long stock;
 }
