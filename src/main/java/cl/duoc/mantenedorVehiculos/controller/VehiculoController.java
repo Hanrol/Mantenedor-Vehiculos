@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cl.duoc.mantenedorVehiculos.dto.ApiResponse;
 import cl.duoc.mantenedorVehiculos.dto.VehiculoDTO;
+import cl.duoc.mantenedorVehiculos.service.RepuestoClient;
 import cl.duoc.mantenedorVehiculos.service.VehiculoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class VehiculoController {
 
     private final VehiculoService vehiculoService;
+    private final RepuestoClient repuestoClient;
 
     @GetMapping("/list")
     public ResponseEntity<ApiResponse<List<VehiculoDTO>>> getAllVehiculos(){
@@ -61,5 +63,10 @@ public class VehiculoController {
         ApiResponse<VehiculoDTO> response = vehiculoService.agregarStock(id, cantidad);
 
         return ResponseEntity.status(response.getCode()).body(response);
+    }
+
+    @GetMapping("/consultar-repuestos")
+    public String consultarRespuestos(){
+        return repuestoClient.consultarRepuestos();
     }
 }
