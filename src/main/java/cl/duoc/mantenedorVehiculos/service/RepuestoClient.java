@@ -13,7 +13,7 @@ public class RepuestoClient {
 
     public String consultarRepuestos(){
         return repuestosWebClient.get()
-            .uri("/api/repuestos")
+            .uri("/stock")
             .retrieve()
             .bodyToMono(String.class)
             .block();
