@@ -29,7 +29,7 @@ public class Vehiculo {
     @Column(nullable = false)
     String modelo;
 
-    @Column(nullable = false)
+    @Column(name = "annio_fabricacion", nullable = false)
     Integer annioFabricacion;
 
     @Column(nullable = false)
