@@ -10,7 +10,7 @@ public class WebClientConfig {
     @Bean
     public WebClient webClient(){
         return WebClient.builder()
-                .baseUrl("http://localhost:3311/api/v1/repuestos")
+                .baseUrl("http://localhost:3312/api/v1/repuesto")
                 .build();
     }
 }
