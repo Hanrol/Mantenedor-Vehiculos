@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cl.duoc.mantenedorVehiculos.dto.ApiResponse;
@@ -68,5 +69,21 @@ public class VehiculoController {
     @GetMapping("/consultar-repuestos")
     public String consultarRespuestos(){
         return repuestoClient.consultarRepuestos();
+    }
+
+    @GetMapping("/{id}/repuestos")
+    public String consultarRepuestosDelVehiculo(@PathVariable Long id) {
+        return vehiculoService.consultarRepuestosDelVehiculo(id);
+    }
+
+    @GetMapping("/buscar")
+    public ResponseEntity<ApiResponse<VehiculoDTO>> buscarPorMarcaYModelo(
+            @RequestParam String marca,
+            @RequestParam String modelo) {
+
+        ApiResponse<VehiculoDTO> response =
+                vehiculoService.buscarPorMarcaYModelo(marca, modelo);
+
+        return ResponseEntity.status(response.getCode()).body(response);
     }
 }

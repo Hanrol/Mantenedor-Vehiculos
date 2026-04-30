@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class VehiculoService {
 
     private final VehiculoRepository vehiculoRepository;
+    private final RepuestoClient repuestoClient;
 
     private boolean marcaValida(String marca) {
         return marca.equalsIgnoreCase("BMW") ||
@@ -159,4 +160,44 @@ public class VehiculoService {
 
         return new ApiResponse<>(200, "Stock agregado correctamente", respuesta);
     }
+
+    public String consultarRepuestosDelVehiculo(Long id) {
+        Vehiculo vehiculo = vehiculoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Vehículo no encontrado"));
+
+        return repuestoClient.consultarRepuestosPorVehiculo(
+                vehiculo.getMarca(),
+                vehiculo.getModelo()
+        );
+    }
+
+    public ApiResponse<VehiculoDTO> buscarPorMarcaYModelo(String marca, String modelo) {
+        Optional<Vehiculo> vehiculoOptional =
+                vehiculoRepository.findByMarcaIgnoreCaseAndModeloIgnoreCase(marca, modelo);
+
+        if (vehiculoOptional.isEmpty()) {
+            return new ApiResponse<>(
+                    404,
+                    "Vehículo no encontrado",
+                    null
+            );
+        }
+
+        Vehiculo vehiculo = vehiculoOptional.get();
+
+        VehiculoDTO vehiculoDTO = new VehiculoDTO(
+                vehiculo.getMarca(),
+                vehiculo.getModelo(),
+                vehiculo.getAnnioFabricacion(),
+                vehiculo.getColor(),
+                vehiculo.getStock()
+        );
+
+        return new ApiResponse<>(
+                200,
+                "Vehículo encontrado",
+                vehiculoDTO
+        );
+    }
+    
 }
